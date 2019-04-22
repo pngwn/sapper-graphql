@@ -12,6 +12,7 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "apollo-client": "^2.5.1",
     "apollo-server-lambda": "^2.4.8",
     "compression": "^1.7.1",
     "graphql": "^14.2.1",

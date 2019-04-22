@@ -1,9 +1,22 @@
 <script>
 	import { onMount } from 'svelte';
+	import ApolloClient, { gql } from 'apollo-boost';
+
+	const HELLO = gql`
+  {
+    hello
+  }
+`;
+
+	const client = new ApolloClient({
+		uri: '.netlify/functions/graphql',
+	});
 
 	onMount(async () => {
-		const r = await fetch('.netlify/functions/graphql');
-
+		const r =	await client.query({
+    	query: HELLO,
+  	})
+  
 		console.log(r)
 	})
 

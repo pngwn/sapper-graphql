@@ -784,6 +784,11 @@
     "@types/events" "*"
     "@types/node" "*"
 
+"@types/zen-observable@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
+  integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -1016,6 +1021,29 @@ apollo-cache-control@0.5.2:
     apollo-server-env "2.2.0"
     graphql-extensions "0.5.4"
 
+apollo-cache@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.2.1.tgz#aae71eb4a11f1f7322adc343f84b1a39b0693644"
+  integrity sha512-nzFmep/oKlbzUuDyz6fS6aYhRmfpcHWqNkkA9Bbxwk18RD6LXC4eZkuE0gXRX0IibVBHNjYVK+Szi0Yied4SpQ==
+  dependencies:
+    apollo-utilities "^1.2.1"
+    tslib "^1.9.3"
+
+apollo-client@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.5.1.tgz#36126ed1d32edd79c3713c6684546a3bea80e6d1"
+  integrity sha512-MNcQKiqLHdGmNJ0rZ0NXaHrToXapJgS/5kPk0FygXt+/FmDCdzqcujI7OPxEC6e9Yw5S/8dIvOXcRNuOMElHkA==
+  dependencies:
+    "@types/zen-observable" "^0.8.0"
+    apollo-cache "1.2.1"
+    apollo-link "^1.0.0"
+    apollo-link-dedup "^1.0.0"
+    apollo-utilities "1.2.1"
+    symbol-observable "^1.0.2"
+    ts-invariant "^0.2.1"
+    tslib "^1.9.3"
+    zen-observable "^0.8.0"
+
 apollo-datasource@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/apollo-datasource/-/apollo-datasource-0.3.1.tgz#4b7ec4c2dd7d08eb7edc865b95fd46b83a4679fd"
@@ -1060,7 +1088,15 @@ apollo-graphql@^0.1.0:
     apollo-env "0.4.0"
     lodash.sortby "^4.7.0"
 
-apollo-link@^1.2.3:
+apollo-link-dedup@^1.0.0:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/apollo-link-dedup/-/apollo-link-dedup-1.0.18.tgz#635cb5659b082e7f270f7649c4b0f71021f7bb4b"
+  integrity sha512-1rr54wyMTuqUmbWvcXbwduIcaCDcuIgU6MqQ599nAMuTrbSOXthGfoAD8BDTxBGQ9roVlM7ABP0VZVEWRoHWSg==
+  dependencies:
+    apollo-link "^1.2.11"
+    tslib "^1.9.3"
+
+apollo-link@^1.0.0, apollo-link@^1.2.11, apollo-link@^1.2.3:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.11.tgz#493293b747ad3237114ccd22e9f559e5e24a194d"
   integrity sha512-PQvRCg13VduLy3X/0L79M6uOpTh5iHdxnxYuo8yL7sJlWybKRJwsv4IcRBJpMFbChOOaHY7Og9wgPo6DLKDKDA==
@@ -1139,7 +1175,7 @@ apollo-tracing@0.5.2:
     apollo-server-env "2.2.0"
     graphql-extensions "0.5.4"
 
-apollo-utilities@^1.0.1, apollo-utilities@^1.2.1:
+apollo-utilities@1.2.1, apollo-utilities@^1.0.1, apollo-utilities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.2.1.tgz#1c3a1ebf5607d7c8efe7636daaf58e7463b41b3c"
   integrity sha512-Zv8Udp9XTSFiN8oyXOjf6PMHepD4yxxReLsl6dPUy5Ths7jti3nmlBzZUOxuTWRwZn0MoclqL7RQ5UEJN8MAxg==
@@ -4449,7 +4485,7 @@ svelte@beta:
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.0.0-beta.28.tgz#693a8a67b41d808d1220b4b16c3f4ee13dc98e9b"
   integrity sha512-CUHT2l7vmukmutfoyALIed+prGRIe9PzGrGfY5ZTUq9NhB3sfYuZ5GctceYQze/e9rV8EEkrmJamWQldvn7l3A==
 
-symbol-observable@^1.0.4:
+symbol-observable@^1.0.2, symbol-observable@^1.0.4:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
