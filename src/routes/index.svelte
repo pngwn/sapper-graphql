@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(async () => {
-		const r = await fetch('.netlify/functions/grapql');
+		const r = await fetch('.netlify/functions/graphql');
 
 		console.log(r)
 	})
