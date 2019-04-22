@@ -1,38 +1,77 @@
 <script>
 	import { onMount } from 'svelte';
-	import ApolloClient, { gql } from 'apollo-boost';
+	import { writable } from 'svelte/store';
 
-	const HELLO = gql`
-  {
-    hello
-  }
-`;
-
-	const client = new ApolloClient({
-		uri: '.netlify/functions/graphql',
-	});
+	const hello = writable(false);
+	const randomFact = writable(false);
+	const specificFact = writable(false);
 
 	onMount(async () => {
-		const r =	await client.query({
+		const {default:ApolloClient, gql, ...rest} = await import('apollo-boost');
+
+		const HELLO = gql`
+			{
+				hello
+			}
+		`;
+
+		const RANDOM_CAT_FACT = gql`
+			{
+				randomFact {
+					_id
+					text
+				}
+			}
+		`;
+
+		const SPECIFIC_CAT_FACT = gql`
+			query Cat($factID: String!) {
+				specificFact(factID: $factID) {
+					_id
+					text
+				}
+			}
+		`;
+
+		const client = new ApolloClient({
+			uri: '.netlify/functions/graphql',
+		});
+
+		const r1 =	await client.query({
     	query: HELLO,
-  	})
-  
-		console.log(r)
-	})
+  	});
+		
+		hello.set(r1.data.hello);
+		console.log(r1);
+
+		const r2 =	await client.query({
+    	query: RANDOM_CAT_FACT,
+		});
+		
+		randomFact.set(r2.data.randomFact);
+		console.log(r2);
+
+		const r3 =	await client.query({
+			query: SPECIFIC_CAT_FACT,
+			variables: { factID: '591f9894d369931519ce358f' }
+		});
+		
+		specificFact.set(r3.data.specificFact);
+		console.log(r3);
+
+	});
 
 </script>
 
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+	
 
 	h1 {
-		font-size: 2.8em;
+		text-align: left;
+		font-size: 1rem;
 		text-transform: uppercase;
 		font-weight: 700;
-		margin: 0 0 0.5em 0;
+		margin: 0 0 4rem 0;
 	}
 
 	figure {
@@ -48,23 +87,33 @@
 	p {
 		margin: 1em auto;
 	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
 </style>
 
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<h1>Sapper, Svelte, Netlify, GraphQL</h1>
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
+<h2>Hello</h2>
+{#if $hello}
+<p>{$hello}</p>
+{:else}
+<p>No hello for you...</p>
+{/if}
 
-<p><strong>Try editing this file (routes/index.html) to test live reloading.</strong></p>
+<h2>Random Cat Fact</h2>
+{#if $randomFact}
+<p>{$randomFact.text}</p>
+<p>id: {$randomFact._id}</p>
+{:else}
+<p>No random fact for you...</p>
+{/if}
+
+<h2>Specific Cat Fact</h2>
+{#if $specificFact}
+<p>{$specificFact.text}</p>
+<p>id: {$specificFact._id}</p>
+{:else}
+<p>No specific fact for you...</p>
+{/if}
