@@ -34,7 +34,7 @@
 		`;
 
 		const client = new ApolloClient({
-			uri: '.netlify/functions/graphql',
+			uri: 'http://localhost:9000/.netlify/functions/graphql',
 		});
 
 		const r1 =	await client.query({
@@ -43,22 +43,29 @@
 		
 		hello.set(r1.data.hello);
 		console.log(r1);
-
-		const r2 =	await client.query({
-    	query: RANDOM_CAT_FACT,
-		});
 		
-		randomFact.set(r2.data.randomFact);
-		console.log(r2);
 
-		const r3 =	await client.query({
-			query: SPECIFIC_CAT_FACT,
-			variables: { factID: '591f9894d369931519ce358f' }
-		});
+		try {
+			const r2 =	await client.query({
+    		query: RANDOM_CAT_FACT,
+			});
+			randomFact.set(r2.data.randomFact);
+			console.log(r2)
+		} catch(e) {
+			console.log(JSON.stringify(e, null, 2))
+		}
+
+		try {
+			const r3 =	await client.query({
+				query: SPECIFIC_CAT_FACT,
+				variables: { factID: '591f9894d369931519ce358f' }
+			});
+			console.log(r3);
+			specificFact.set(r3.data.specificFact);
+		} catch(e) {
+			console.log(JSON.stringify(e, null, 2))
+		}
 		
-		specificFact.set(r3.data.specificFact);
-		console.log(r3);
-
 	});
 
 </script>

@@ -9,7 +9,8 @@
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "lambda:test": "netlify-lambda serve src/functions"
   },
   "dependencies": {
     "apollo-boost": "^0.3.1",
@@ -18,6 +19,7 @@
     "apollo-server-lambda": "^2.4.8",
     "compression": "^1.7.1",
     "graphql": "^14.2.1",
+    "netlify-lambda": "^1.4.5",
     "polka": "^0.5.0",
     "sirv": "^0.2.0"
   },
